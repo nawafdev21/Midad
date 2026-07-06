@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PostGrid from "./PostGrid.astro";
+
+interface Props {
+  heading: string;
+  posts: CollectionEntry<"blog">[];
+}
+
+const { heading, posts } = Astro.props;
+---
+
+<section class="wrap">
+  <h1>{heading}</h1>
+  <PostGrid posts={posts} />
+  <slot />
+</section>
+
+<style>
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  h1 {
+    margin: 0 0 32px;
+  }
+</style>

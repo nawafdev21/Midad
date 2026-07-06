@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectGrid from "../../components/ProjectGrid.astro";
+import { getProjects } from "../../lib/projects";
+
+const projects = await getProjects();
+---
+
+<Layout title="كتب وأفلام">
+  <section class="wrap">
+    <h1>كتب وأفلام</h1>
+    <ProjectGrid projects={projects} />
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  h1 {
+    margin: 0 0 32px;
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE_NAME, SITE_TAGLINE } from "../config";
+---
+
+<Layout title="عنّا" description={`عن ${SITE_NAME} — ${SITE_TAGLINE}`}>
+  <article class="wrap">
+    <h1>عنّا</h1>
+
+    <p>
+      «{SITE_NAME}» مساحة عربية للقراءة الهادئة — نختار مقالات في الفكر والثقافة
+      والتقنية، ونشارك بها قرّاءً يبحثون عن محتوى مكتوب بعناية، بعيداً عن ضجيج
+      المحتوى السريع.
+    </p>
+
+    <p>
+      نعتمد على مساهمات كُتّاب من خارج فريق التحرير: يُرسل الكاتب مقاله، يراجعه
+      فريقنا، ثم يُنشر بعد التنقيح. لو تحب تكتب معنا،
+      <a href="/contact">راسلنا</a>.
+    </p>
+  </article>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    line-height: 1.9;
+  }
+
+  h1 {
+    margin: 0 0 24px;
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+</style>

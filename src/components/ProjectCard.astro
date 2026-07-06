@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { title, type, year, cover } = project.data;
+---
+
+<a href={`/projects/${project.data.slug}`} class="project-card">
+  <Image src={cover} alt={title} width={330} height={220} class="cover" />
+  <div class="body">
+    <span class="tag">{type}</span>
+    <h3 class="title">{title}</h3>
+    <p class="meta">{year}</p>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  .cover {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  .body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tag {
+    align-self: start;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  .title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+</style>

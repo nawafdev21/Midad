@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PostGrid from "./PostGrid.astro";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts.length > 0 && (
+  <section class="related-posts">
+    <h2>مقالات ذات صلة</h2>
+    <PostGrid posts={posts} />
+  </section>
+)}
+
+<style>
+  .related-posts {
+    margin-top: 64px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin: 0 0 20px;
+  }
+</style>

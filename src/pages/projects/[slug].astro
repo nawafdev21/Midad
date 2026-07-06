@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import { getProjects } from "../../lib/projects";
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, type, year, cover, description, link } = project.data;
+---
+
+<Layout title={title} description={description} image={cover.src}>
+  <article class="wrap">
+    <h1>{title}</h1>
+    <p class="meta">{type} · {year}</p>
+
+    <Image src={cover} alt={title} width={900} height={500} class="cover" />
+
+    <p class="description">{description}</p>
+
+    {link && (
+      <a href={link} class="external-link" target="_blank" rel="noopener noreferrer">
+        رابط خارجي
+      </a>
+    )}
+  </article>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+
+  .meta {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin: 0 0 32px;
+  }
+
+  .cover {
+    width: 100%;
+    border-radius: var(--radius-card);
+    margin-bottom: 32px;
+  }
+
+  .description {
+    line-height: 1.9;
+  }
+
+  .external-link {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 10px 20px;
+    border-radius: var(--radius-card);
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+</style>

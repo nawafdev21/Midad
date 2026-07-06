@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostList from "../../components/PostList.astro";
+import Pagination from "../../components/Pagination.astro";
+import { getPublishedPosts, PAGE_SIZE } from "../../lib/posts";
+
+const allPosts = await getPublishedPosts();
+const totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
+const posts = allPosts.slice(0, PAGE_SIZE);
+---
+
+<Layout title="مقالات">
+  <PostList heading="مقالات" posts={posts}>
+    <Pagination currentPage={1} totalPages={totalPages} basePath="/blog" />
+  </PostList>
+</Layout>

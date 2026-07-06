@@ -1,0 +1,88 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  basePath: string;
+}
+
+const { currentPage, totalPages, basePath } = Astro.props;
+
+function pageHref(page: number) {
+  return page === 1 ? basePath : `${basePath}/page/${page}`;
+}
+
+const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+---
+
+{totalPages > 1 && (
+  <nav class="pagination" aria-label="ترقيم الصفحات">
+    {currentPage > 1 && (
+      <a href={pageHref(currentPage - 1)} class="nav-link">السابق</a>
+    )}
+
+    <ul class="pages">
+      {pages.map((page) => (
+        <li>
+          <a
+            href={pageHref(page)}
+            class="page-link"
+            aria-current={page === currentPage ? "page" : undefined}
+          >
+            {page}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {currentPage < totalPages && (
+      <a href={pageHref(currentPage + 1)} class="nav-link">التالي</a>
+    )}
+  </nav>
+)}
+
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 48px 0;
+  }
+
+  .pages {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-link,
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .page-link:hover,
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .page-link[aria-current="page"] {
+    background: var(--color-accent);
+    color: #fff;
+  }
+</style>

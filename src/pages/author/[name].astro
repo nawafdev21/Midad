@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostList from "../../components/PostList.astro";
+import { getPublishedPosts } from "../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const authors = [...new Set(posts.map((post) => post.data.author))];
+
+  return authors.map((author) => ({
+    params: { name: author },
+    props: { posts: posts.filter((post) => post.data.author === author) },
+  }));
+}
+
+const { name } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={`مقالات ${name}`}>
+  <PostList heading={`مقالات ${name}`} posts={posts} />
+</Layout>

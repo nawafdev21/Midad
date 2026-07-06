@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE_NAME } from "../config";
+
+const CONTACT_EMAIL = "hello@midad.example";
+---
+
+<Layout title="راسلنا" description={`تواصل مع فريق ${SITE_NAME}`}>
+  <article class="wrap">
+    <h1>راسلنا</h1>
+
+    <p>
+      لأي استفسار، أو لو تحب ترسل مقالاً للنشر، راسلنا على البريد:
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+    </p>
+
+    <p>
+      مقالك يمر بمراجعة فريق التحرير قبل النشر، وبعد الموافقة يُحوَّل النص
+      إلى الموقع وينشر ضمن قسم <a href="/blog">مقالات</a>.
+    </p>
+
+    <p>تقدر أيضاً تتابعنا عبر روابط التواصل في أسفل الصفحة.</p>
+  </article>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    line-height: 1.9;
+  }
+
+  h1 {
+    margin: 0 0 24px;
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+</style>

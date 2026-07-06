@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PostGrid from "../components/PostGrid.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import NewsletterForm from "../components/NewsletterForm.astro";
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from "../config";
+import { getPublishedPosts } from "../lib/posts";
+import { getProjects } from "../lib/projects";
+
+const latestPosts = (await getPublishedPosts()).slice(0, 6);
+const featuredProjects = (await getProjects()).slice(0, 4);
+---
+
+<Layout>
+  <section class="hero">
+    <h1>{SITE_TAGLINE}</h1>
+    <p>{SITE_DESCRIPTION}</p>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2>أحدث المقالات</h2>
+      <a href="/blog">كل المقالات</a>
+    </div>
+    <PostGrid posts={latestPosts} />
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2>كتب وأفلام</h2>
+      <a href="/projects">كل الأعمال</a>
+    </div>
+    <ProjectGrid projects={featuredProjects} />
+  </section>
+
+  <section class="section about-blurb">
+    <h2>عن {SITE_NAME}</h2>
+    <p>
+      «{SITE_NAME}» مساحة عربية للقراءة الهادئة، نختار فيها مقالات في الفكر
+      والثقافة والتقنية. <a href="/about">المزيد عنّا</a>.
+    </p>
+  </section>
+
+  <section class="section newsletter-section">
+    <NewsletterForm />
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+    margin: 0 0 16px;
+  }
+
+  .hero p {
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    margin: 0;
+  }
+
+  .section-header a {
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .about-blurb {
+    max-width: 720px;
+    text-align: center;
+  }
+
+  .about-blurb p {
+    color: var(--color-text-secondary);
+    line-height: 1.9;
+  }
+
+  .about-blurb a {
+    color: var(--color-accent);
+  }
+
+  .newsletter-section {
+    max-width: 480px;
+    text-align: center;
+  }
+</style>
