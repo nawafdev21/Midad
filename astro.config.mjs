@@ -10,8 +10,8 @@ import keystatic from '@keystatic/astro';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: بدّل هذا بالدومين الفعلي بعد ربطه.
-  site: 'https://midad.example',
+  // TODO: بدّل هذا بالدومين المخصص بعد ربطه لاحقاً.
+  site: 'https://midad-zeta.vercel.app',
 
   // server عشان لوحة /keystatic تشتغل — كل صفحات الموقع العادية
   // معلّمة يدوياً بـ prerender = true عشان تضل مبنية Static.

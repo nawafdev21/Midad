@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://midad.example/sitemap-index.xml
+Sitemap: https://midad-zeta.vercel.app/sitemap-index.xml
