@@ -13,16 +13,21 @@ export default config({
       format: { contentField: "body" },
       schema: {
         entrySlug: fields.slug({ name: { label: "معرّف الملف (تلقائي، لا تحتاج تلمسه)" } }),
-        title: fields.text({ label: "العنوان" }),
-        slug: fields.text({ label: "الرابط (slug)" }),
-        author: fields.text({ label: "الكاتب" }),
-        date: fields.date({ label: "التاريخ" }),
+        title: fields.text({ label: "العنوان", validation: { isRequired: true } }),
+        slug: fields.text({ label: "الرابط (slug)", validation: { isRequired: true } }),
+        author: fields.text({ label: "الكاتب", validation: { isRequired: true } }),
+        date: fields.date({ label: "التاريخ", validation: { isRequired: true } }),
         cover: fields.image({
           label: "صورة الغلاف",
           directory: "src/assets/covers",
           publicPath: "../../assets/covers/",
+          validation: { isRequired: true },
         }),
-        description: fields.text({ label: "الوصف المختصر", multiline: true }),
+        description: fields.text({
+          label: "الوصف المختصر",
+          multiline: true,
+          validation: { isRequired: true },
+        }),
         readingTime: fields.integer({
           label: "وقت القراءة بالدقائق (اختياري — يُحسب تلقائياً لو تُرك فارغاً)",
           validation: { isRequired: false },
@@ -45,8 +50,8 @@ export default config({
       path: "src/content/projects/*",
       schema: {
         entrySlug: fields.slug({ name: { label: "معرّف الملف (تلقائي، لا تحتاج تلمسه)" } }),
-        title: fields.text({ label: "العنوان" }),
-        slug: fields.text({ label: "الرابط (slug)" }),
+        title: fields.text({ label: "العنوان", validation: { isRequired: true } }),
+        slug: fields.text({ label: "الرابط (slug)", validation: { isRequired: true } }),
         type: fields.select({
           label: "النوع",
           options: [
@@ -59,9 +64,14 @@ export default config({
           label: "صورة الغلاف",
           directory: "src/assets/covers",
           publicPath: "../../assets/covers/",
+          validation: { isRequired: true },
         }),
-        description: fields.text({ label: "الوصف", multiline: true }),
-        year: fields.integer({ label: "السنة" }),
+        description: fields.text({
+          label: "الوصف",
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        year: fields.integer({ label: "السنة", validation: { isRequired: true } }),
         link: fields.url({ label: "رابط خارجي (اختياري)", validation: { isRequired: false } }),
       },
     }),
