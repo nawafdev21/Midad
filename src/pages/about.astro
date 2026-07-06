@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { SITE_NAME, SITE_TAGLINE } from "../config";
+
+export const prerender = true;
 ---
 
 <Layout title="عنّا" description={`عن ${SITE_NAME} — ${SITE_TAGLINE}`}>

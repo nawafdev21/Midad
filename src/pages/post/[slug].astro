@@ -12,6 +12,8 @@ import {
   formatArabicDate,
 } from "../../lib/posts";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
   return posts.map((post) => ({

@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { SITE_NAME } from "../config";
+
+export const prerender = true;
 ---
 
 <Layout title="سياسة وشروط النشر" description={`سياسة وشروط النشر في ${SITE_NAME}`}>
